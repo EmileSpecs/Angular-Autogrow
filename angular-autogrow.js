@@ -45,7 +45,6 @@
                     var newHeight = 0, hasGrown = false;
                     
                     if (!setupDone) {
-                        $scope.offset = $scope.getOffset();
                         $scope.lineHeight = ($element[0].scrollHeight / $scope.attrs.rows) - ($scope.offset / $scope.attrs.rows);
                         $scope.maxAllowedHeight = ($scope.lineHeight * $scope.attrs.maxLines) - $scope.offset;
                         setupDone = true;
@@ -64,7 +63,8 @@
                     $element[0].style.height = newHeight + 'px';
                     return hasGrown;
                 };
-
+                
+                $scope.offset = $scope.getOffset();
                 $element[0].addEventListener('input', $scope.autogrowFn);
             }
         }
