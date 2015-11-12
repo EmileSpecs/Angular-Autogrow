@@ -1,8 +1,8 @@
 {
   "name": "angular-autogrow",
   "main": "angular-autogrow.js",
-  "version": "0.1.0",
-  "homepage": "https://github.com/CodingAspect/Angular-Autogrow",
+  "version": "0.1.1",
+  "homepage": "https://github.com/EmileSpecs/Angular-Autogrow",
   "authors": [
     "Evyatar Rosner <evyatar@codingaspect.com>"
   ],
