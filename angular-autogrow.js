@@ -40,8 +40,17 @@
                  * Sets textarea height as exact height of content
                  * @returns {boolean}
                  */
+                var setupDone = false;
                 $scope.autogrowFn = function(){
                     var newHeight = 0, hasGrown = false;
+                    
+                    if (!setupDone) {
+                        $scope.offset = $scope.getOffset();
+                        $scope.lineHeight = ($element[0].scrollHeight / $scope.attrs.rows) - ($scope.offset / $scope.attrs.rows);
+                        $scope.maxAllowedHeight = ($scope.lineHeight * $scope.attrs.maxLines) - $scope.offset;
+                        setupDone = true;
+                    }
+                    
                     if(($element[0].scrollHeight - $scope.offset) > $scope.maxAllowedHeight){
                         $element[0].style.overflowY = 'scroll';
                         newHeight = $scope.maxAllowedHeight;
@@ -55,10 +64,6 @@
                     $element[0].style.height = newHeight + 'px';
                     return hasGrown;
                 };
-
-                $scope.offset = $scope.getOffset();
-                $scope.lineHeight = ($element[0].scrollHeight / $scope.attrs.rows) - ($scope.offset / $scope.attrs.rows);
-                $scope.maxAllowedHeight = ($scope.lineHeight * $scope.attrs.maxLines) - $scope.offset;
 
                 $element[0].addEventListener('input', $scope.autogrowFn);
             }
